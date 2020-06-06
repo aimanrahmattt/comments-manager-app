@@ -63,7 +63,7 @@ export class SinglePostComponent implements OnInit {
     );
   }
 
-  filterComments() {   
+  filterComments() {
 
     merge(
       this.filterForm.get('filterValue').valueChanges
@@ -73,29 +73,35 @@ export class SinglePostComponent implements OnInit {
     ).subscribe(value => {
       const type = this.filterForm.value.filterType;
 
-      if (value) {        
-        switch (type) {
-          case "name":
-            this.comments = this.comments.filter(comment => {
-              return comment.name.trim().toLowerCase().includes(value.trim().toLowerCase());
-            });
-            break;
-          case "email":
-            this.comments = this.comments.filter(comment => {
-              return comment.email.trim().toLowerCase().includes(value.trim().toLowerCase());
-            });
-            break;
-          case "body":
-            this.comments = this.comments.filter(comment => {
-              return comment.body.trim().toLowerCase().includes(value.trim().toLowerCase());
-            });
-            break;
-
-          default:
-            this.getComments();
-            break;
+      if (value) {
+        if (type) {
+          this.comments = this.comments.filter(comment => {
+            return comment[type].trim().toLowerCase().includes(value.trim().toLowerCase());
+          });
         }
-        
+
+        // switch (type) {
+        //   case "name":
+        //     this.comments = this.comments.filter(comment => {
+        //       return comment.name.trim().toLowerCase().includes(value.trim().toLowerCase());
+        //     });
+        //     break;
+        //   case "email":
+        //     this.comments = this.comments.filter(comment => {
+        //       return comment.email.trim().toLowerCase().includes(value.trim().toLowerCase());
+        //     });
+        //     break;
+        //   case "body":
+        //     this.comments = this.comments.filter(comment => {
+        //       return comment.body.trim().toLowerCase().includes(value.trim().toLowerCase());
+        //     });
+        //     break;
+
+        //   default:
+        //     this.getComments();
+        //     break;
+        // }
+
       } else {
         this.getComments();
       }
