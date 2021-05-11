@@ -12,14 +12,14 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   getAllPosts() {
-    return this.http.get<PostResponse[]>(this.baseUrl + '/posts');
+    return this.http.get<PostResponse[]>('/api/posts');
   }
 
   getSinglePost(postId: string) {
-    return this.http.get<PostResponse>(this.baseUrl + '/posts/' + postId);
+    return this.http.get<PostResponse>('/api/posts/' + postId);
   }
 
   getComments(postId: string) {
-    return this.http.get<CommentsResponse[]>(this.baseUrl + `/comments?postId=${postId}`);
+    return this.http.get<CommentsResponse[]>(`/api/comments?postId=${postId}`);
   }
 }
