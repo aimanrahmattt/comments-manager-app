@@ -7,7 +7,7 @@ import { PostResponse, CommentsResponse } from '../dto/response/response';
 })
 export class ApiService {
 
-  readonly baseUrl: string = 'https://jsonplaceholder.typicode.com';
+  // readonly baseUrl: string = 'https://jsonplaceholder.typicode.com';
 
   constructor(private http: HttpClient) { }
 
@@ -16,7 +16,7 @@ export class ApiService {
   }
 
   getSinglePost(postId: string) {
-    return this.http.get<PostResponse>('/api/posts/' + postId);
+    return this.http.get<PostResponse>(`/api/posts/${postId}`);
   }
 
   getComments(postId: string) {
